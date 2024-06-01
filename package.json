@@ -1,0 +1,26 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "Creating portfolio website server",
+  "main": "index.js",
+  "type": "module",
+
+  "scripts": {
+    "dev" : "nodemon server/index.js",
+    "start": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/impriyanshu29/myPortfolio.git"
+  },
+  "author": "Priyanshu Tiwari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/impriyanshu29/myPortfolio/issues"
+  },
+  "homepage": "https://github.com/impriyanshu29/myPortfolio#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
