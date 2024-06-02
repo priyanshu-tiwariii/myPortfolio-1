@@ -4,9 +4,8 @@
   "description": "Creating portfolio website server",
   "main": "index.js",
   "type": "module",
-
   "scripts": {
-    "dev" : "nodemon server/index.js",
+    "dev": "nodemon server/index.js",
     "start": "node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +20,14 @@
   },
   "homepage": "https://github.com/impriyanshu29/myPortfolio#readme",
   "dependencies": {
-    "express": "^4.19.2"
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.1",
+    "path": "^0.12.7"
   }
 }
