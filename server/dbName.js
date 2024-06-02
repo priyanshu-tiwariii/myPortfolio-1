@@ -1,1 +1,1 @@
-export const DB_NAME = "PortfolioDB"
+export const DB_NAME = "portfolioDB"

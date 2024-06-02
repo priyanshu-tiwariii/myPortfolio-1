@@ -1,3 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .animate-spin-slow {
+    animation: spin-slow 10s linear infinite;
+  }
+  
+  .icon-container {
+    position: relative;
+    width:24rem ; /* Adjust according to image size */
+    height:24rem ; /* Adjust according to image size */
+   
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .icon:nth-child(1) {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .icon:nth-child(2) {
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .icon:nth-child(3) {
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .icon:nth-child(4) {
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+  
+  .icon-container:hover .icon {
+    animation-play-state: paused;
+  }
+  

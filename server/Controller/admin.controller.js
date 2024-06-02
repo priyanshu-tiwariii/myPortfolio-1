@@ -37,7 +37,7 @@ export const signUp = asyncHandler(async (req, res) => {
 
     return res
       .status(201)
-      .json(new apiResponse(201, admin, "User created successfully"));
+      .json(new apiResponse(201, {}, "User created successfully"));
   } catch (error) {
     throw new apiError(400, "Admin creation failed");
   }

@@ -5,7 +5,7 @@ import { BsTwitterX } from "react-icons/bs";
 import { FaInstagram } from "react-icons/fa";
 export function Footer() {
   return (
-    <footer className="bg-gray-800 text-white py-8">
+    <footer className="bg-black/90 text-white dark:bg-neutral-950 py-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="text-center md:text-left mb-4 md:mb-0">
@@ -37,10 +37,10 @@ export function Footer() {
               <Link to="/" className="text-gray-400 hover:text-white transition-colors duration-300">Home</Link>
             </li>
             <li>
-              <Link to="/about" className="text-gray-400 hover:text-white transition-colors duration-300">About</Link>
+              <Link to="/resume" className="text-gray-400 hover:text-white transition-colors duration-300">Resume</Link>
             </li>
             <li>
-              <Link to="/projects" className="text-gray-400 hover:text-white transition-colors duration-300">Projects</Link>
+              <Link to="/works" className="text-gray-400 hover:text-white transition-colors duration-300">Work</Link>
             </li>
             <li>
               <Link to="/contact" className="text-gray-400 hover:text-white transition-colors duration-300">Contact</Link>
