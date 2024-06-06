@@ -11,7 +11,12 @@ import { ThemeProvider } from "./Components/Theme/ThemeProvider.jsx";
 // Importing Pages
 
 import Home from "./Pages/Home.jsx";
+import Resume from "./Pages/Resume.jsx";
+import Work from "./Pages/Work.jsx";
+import Contact from "./Pages/Contact.jsx";
+import { Admin } from "./Pages/AdminPage.jsx";
 
+import SignIn from "./Pages/Sigin.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +25,26 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/admin2213008/signIn",
+        element: <SignIn />,
+      },
+      {
+        path: "/admin2213008",
+        element: <Admin/>,
+      },
+      {
+        path: "/resume",
+        element: <Resume />,
+      },
+      {
+        path: "/works",
+        element: <Work />,
+      },
+      {
+        path: "/contact",
+        element: <Contact/>,
       },
     ],
   },

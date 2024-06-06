@@ -1,56 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@keyframes spin-slow {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+@keyframes appear {
+  from{
+    opacity : 0;
+    /* scale: 0.5; */
+    clip-path: inset(100% 100% 0 0);
+    /* transform: translateY(100px); */
   }
-  
-  .animate-spin-slow {
-    animation: spin-slow 10s linear infinite;
+  to {
+    opacity: 1;
+    /* scale: 1; */
+    clip-path: inset(0 0 0 0);
+    /* transform: translate(0px); */
+
   }
-  
-  .icon-container {
-    position: relative;
-    width:24rem ; /* Adjust according to image size */
-    height:24rem ; /* Adjust according to image size */
+}
+
+
+.blo{
+  animation : appear linear;
+  animation-timeline: view();
+  animation-range:entry 0% cover 40%;
+}
+
+
+
+@keyframes imgAppear {
+  from{
+    opacity : 0;
+    scale: 0.5;
    
   }
-  
-  .icon {
-    width: 24px;
-    height: 24px;
+  to {
+    opacity: 1;
+    scale: 1;
+    
+
   }
-  
-  .icon:nth-child(1) {
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .icon:nth-child(2) {
-    top: 50%;
-    left: 100%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .icon:nth-child(3) {
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .icon:nth-child(4) {
-    top: 50%;
-    left: 0;
-    transform: translate(-50%, -50%);
-  }
-  
-  .icon-container:hover .icon {
-    animation-play-state: paused;
-  }
-  
+}
+
+.bloc{
+  animation : imgAppear linear;
+  animation-timeline: view();
+  animation-range:entry 0% cover 40%;
+}
