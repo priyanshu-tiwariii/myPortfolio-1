@@ -126,7 +126,8 @@ function Home() {
       </div>
 
       {/* Quantity section */}
-      <div className="mx-auto mt-4 pb-6 bg-green-300/40 dark:bg-black/80 py-10 rounded-xl shadow max-w-6xl px-2 lg:px-8">
+      <div className="mx-auto mt-4 pb-6 bg-green-300/40 dark:bg-black/80 py-10 rounded-xl shadow max-w-6xl px-2 lg:px-8 dark:darkBanner">
+
         <div className="flex flex-wrap bloc justify-around gap-y-8 text-center">
           <div>
             <div className="mx-auto flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-red-100">

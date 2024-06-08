@@ -15,7 +15,7 @@ import Resume from "./Pages/Resume.jsx";
 import Work from "./Pages/Work.jsx";
 import Contact from "./Pages/Contact.jsx";
 import { Admin } from "./Pages/AdminPage.jsx";
-
+import Dashboard from "./Pages/Dashboard/Dashboard.jsx";
 import SignIn from "./Pages/Sigin.jsx";
 const router = createBrowserRouter([
   {
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin2213008",
-        element: <Admin/>,
+        element: <Dashboard />,
       },
       {
         path: "/resume",

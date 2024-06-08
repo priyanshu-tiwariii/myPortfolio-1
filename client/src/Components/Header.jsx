@@ -32,7 +32,7 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const {currentTheme} = useSelector((state)=>state.theme);
   const dispatch = useDispatch();
-  
+  const {currentUser} = useSelector((state)=>state.user);
 
   const handleTheme = () =>{
     console.log('Theme:', currentTheme);
@@ -42,8 +42,18 @@ export function Header() {
     <div className="relative w-full bg-gradient-to-r from-green-50 via-gray-50 to-green-100 dark:bg-gradient-to-r dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-900 dark:text-neutral-200">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
-          <span></span>
-          <span className="font-bold font-serif text-2xl">PT</span>
+        <span className="font-bold font-serif text-2xl">
+        {currentUser && currentUser?.data?.loggedInUser?.isAdmin
+                ? <Link to="/admin2213008">
+                    PT
+                  </Link>
+                
+                :
+                <Link to="/" className={`whitespace-nowrap self-center font-logo_font text-black/80 dark:text-green-50 text-sm sm:text-xl font-semibold`}>
+                  PT
+                </Link>
+                }
+        </span>
         </div>
         <div className="hidden lg:block">
           <ul className="inline-flex space-x-8">
@@ -61,6 +71,7 @@ export function Header() {
         </div>
 
         <div className=" hidden lg:block items-center space-x-2">
+          
         <button
               className=" m-2   dark:text-gray-200 hover:text-gray-700  sm:inline"
               color="#F5F5F"

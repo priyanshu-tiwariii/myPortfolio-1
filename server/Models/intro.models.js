@@ -5,7 +5,7 @@ const resumeSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
+    
     },
     email: {
       type: String,
@@ -13,23 +13,23 @@ const resumeSchema = new Schema(
     },
     image :{
         type:String,
-        required : true,
+       
     },
     headlines:{
         type: String,
-        required :true,
+        
     },
     location:{
         type:String,
-        required :true,
+        
     },
     city:{
         type:String,
-        required:true,
+       
     },
     about:{
         type :String,
-        required :true
+      
     },
     socials:[
         {
@@ -56,57 +56,22 @@ const resumeSchema = new Schema(
         }
     ],
   
-    hobbies:[
-        {
-            name:{
-                type:String,
-                
-            }
-        }
-    ],
-    languages:[
-        {
-            name:{
-                type:String,
-          
-            },
-            level:{
-                type:String,
-                
-            }
-        }
-    ],
-    interests:[
-        {
-            name:{
-                type:String,
-                
-            }
-        }
-    ],
-    references:[
-        {
-            name:{
-                type:String,
-              
-            },
-            company:{
-                type:String,
-            
-            },
-            email:{
-                type:String,
-            
-            },
-            phone:{
-                type:String,
-                
-            }
-        }
-    ],
+    hobbies:{
+        type:String,
+       
+    },
+    languages:{
+        type:String,
+    
+    },
+    interests:{
+        type:String,
+       
+    },
+    
     resumePdf:{
         type:String,
-        required:true,
+        
     },
     extraLinks:[
         {
