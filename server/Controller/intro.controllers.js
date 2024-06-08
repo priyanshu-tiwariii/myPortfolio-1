@@ -2,13 +2,12 @@ import asyncHandler from "../Helper/asyncHandler.js";
 import apiError from "../Helper/apiError.js";
 import apiResponse from "../Helper/apiResponse.js";
 import Intro from "../Models/intro.models.js";
-
+import { uploadFileOnCloudinary,deleteFileFromCloudinary } from "../Helper/cloudinary.js";
 export const createIntro = asyncHandler(async (req, res) => {
   try {
     const {
       name,
       email,
-      image,
       headlines,
       location,
       city,
@@ -29,7 +28,7 @@ export const createIntro = asyncHandler(async (req, res) => {
         {
           name,
           email,
-          image,
+        
           headlines,
           location,
           city,
@@ -464,5 +463,88 @@ export const updateExtraLinks = asyncHandler(async (req, res) => {
     } catch (error) {
         throw new apiError(400, "ExtraLinks update failed");
     }   
+}
+);
+
+
+export const uploadProfileImage = asyncHandler(async (req, res) => {
+    try {
+      const { email } = req.body;
+    
+      const existedIntro = await Intro.findOne({ email });
+      if (!existedIntro) {
+       
+        const newIntro = await Intro.create({
+            email,
+            image:[]
+            });
+      }
+
+      const Profile = req.file.path;
+     
+      if (!Profile) {
+        throw new apiError(400, "Profile image not found");
+      }
+  
+      const profileImage = await uploadFileOnCloudinary(Profile);
+      if (!profileImage) {
+        throw new apiError(400, "Profile image upload failed");
+      }
+ 
+      const updatedIntro = await Intro.findOneAndUpdate(
+        { email },
+        {
+          image:[
+            {
+                url: profileImage.secure_url,
+                public_id: profileImage.public_id
+                
+            },
+          ]
+        },
+        { new: true }
+      );
+      if (!updatedIntro) {
+        throw new apiError(400, "Profile image update failed");
+      }
+      return res
+        .status(200)
+        .json(new apiResponse(200, updatedIntro, "Profile image uploaded successfully"));
+    } catch (error) {
+      
+      throw new apiError(400, "Profile image upload failed");
+    }
+  })
+
+  export const deleteProfileImage = asyncHandler(async (req, res) => {
+    try {
+      const { email } = req.body;
+      const publicId = req.query.publicId;
+         const existedIntro = await Intro.findOne({
+            email
+        });
+        const deleteImage = await deleteFileFromCloudinary(publicId);
+        if (!deleteImage) {
+            throw new apiError(400, "Profile image delete failed");
+        }
+
+
+        const deletedProfileImage = await Intro.findOneAndUpdate
+        (
+            { email },
+            {
+                image: null
+            }
+        );
+    
+        if (!deletedProfileImage) {
+            throw new apiError(400, "Profile image delete failed");
+        }
+        return res
+            .status(200)
+            .json(new apiResponse(200, {}, "Profile image deleted successfully"));
+    } catch (error) {
+        throw new apiError(400, "Profile image delete failed");
+    }
 }
 );

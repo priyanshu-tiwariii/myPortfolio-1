@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { createIntro, addSkills,addSocials,updatedIntro,getIntro,getAllIntro,deleteIntro,deleteSocial,deleteSkill,getSkill,getSocial } from "../Controller/intro.controllers.js";
+import { createIntro, addSkills,addSocials,updatedIntro,getIntro,getAllIntro,deleteIntro,deleteSocial,deleteSkill,getSkill,getSocial, uploadProfileImage, deleteProfileImage } from "../Controller/intro.controllers.js";
+import upload from "../Middleware/uploadFile.middleware.js";
 
 const router = Router();
 router.post('/createIntro', createIntro);
@@ -13,4 +14,6 @@ router.delete('/deleteSocial', deleteSocial);
 router.delete('/deleteSkill', deleteSkill);
 router.get('/getSkill', getSkill);
 router.get('/getSocial', getSocial);
+router.post("/uploadProfileImage",upload.single("file"), uploadProfileImage);
+router.delete("/deleteProfileImage", deleteProfileImage);
 export default router;

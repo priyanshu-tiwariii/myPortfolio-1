@@ -11,10 +11,18 @@ const resumeSchema = new Schema(
       type: String,
       required: true,
     },
-    image :{
-        type:String,
-       
-    },
+    image :[
+        {
+            url:{
+                type:String,
+                
+            },
+            public_id:{
+                type:String,
+                
+            }
+        }
+    ],
     headlines:{
         type: String,
         
