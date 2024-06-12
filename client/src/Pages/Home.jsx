@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Image2 from "../assets/11.png";
 import Image3 from "../assets/13.png";
@@ -11,7 +11,9 @@ import { SlCalender } from "react-icons/sl";
 import { IoMdPaper } from "react-icons/io";
 import { IoDiamondOutline } from "react-icons/io5";
 import { LuFileCode2 } from "react-icons/lu";
-
+import { FaDiscord } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 const items = [
   {
     icon: <LuFileCode2 className="text-green-600 font-bold h-6 w-7" />,
@@ -39,11 +41,45 @@ function Home() {
     words: ["Full Stack Developer", "MERN Developer", "Football Player"],
     loop: {},
   });
+  const [error, setError] = useState(" ");
+  const [updateMessage, setUpdateMessage] = useState(" ");
+  const [socialData, setSocialData] = useState([]);
+  useEffect(() => {
+    const fetchSocialMedia = async () => {
+      try {
+        const res = await fetch(`/api/intro/getSocial`);
+        const data = await res.json();
+        console.log("data", data);
+        if (!res.ok) {
+          setError(data.message);
+          setTimeout(() => {
+            setError(" ");
+          }, 5000);
+          return;
+        }
 
+        setSocialData(data.data);
+
+        setUpdateMessage(data.message);
+        setError(" ");
+        setTimeout(() => {
+          setUpdateMessage(" ");
+        }, 5000);
+      } catch (error) {
+        setError("Unable to fetch social media");
+        setTimeout(() => {
+          setError(" ");
+        }, 5000);
+      }
+    };
+    fetchSocialMedia();
+  }, []);
+
+ 
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <div className="relative w-full bg-gradient-to-r from-green-50 via-gray-50 to-green-100 dark:bg-gradient-to-r dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-900 dark:text-neutral-200">
+      <div className="relative w-full bg-gradient-to-r from-green-50 via-gray-50 to-green-100 dark:bg-gradient-to-r dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-900 dark:text-neutral-900">
         <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-5 px-4 lg:px-8">
           <div className="flex flex-col  justify-center text-center lg:text-left my-4 py-8 lg:col-span-7 space-y-6">
             <div className="mt-8 p-1 flex mx-auto lg:mx-0 max-w-max items-center space-x-2 rounded-full bg-green-100/40 dark:bg-zinc-950">
@@ -95,39 +131,71 @@ function Home() {
               src={Image2}
               alt="Priyanshu Image"
             />
-            <div className="flex flex-col gap-4 mt-4">
-              <a
-                href="https://linkedin.com"
-                className="text-black/80 dark:text-green-100 dark:hover:text-blue-600 hover:text-blue-600"
-              >
-                <FaLinkedin size={24} />
-              </a>
-              <a
-                href="https://github.com"
-                className="text-black/80 dark:text-green-100 dark:hover:text-gray-200 hover:text-black"
-              >
-                <FaGithub size={24} />
-              </a>
-              <a
-                href="https://twitter.com"
-                className="text-black/80 dark:text-green-100 dark:hover:text-gray-200 hover:text-black"
-              >
-                <BsTwitterX size={24} />
-              </a>
-              <a
-                href="https://instagram.com"
-                className="text-black/80 dark:text-green-100 hover:text-pink-600 dark:hover:text-pink-600"
-              >
-                <FaInstagram size={24} />
-              </a>
-            </div>
+            <div className="flex flex-col ">
+           {socialData?.map((social, index) => {
+  return (
+    //
+    
+    <div key={index} className="flex flex-col gap-4 mt-4">
+      {social?.name === "Instagram" ? (
+        <a
+          href={social?.url}
+          className="text-black/80 dark:text-green-100 hover:text-pink-600 dark:hover:text-pink-600"
+        >
+          <FaInstagram size={24} />
+        </a>
+      ) : social?.name === "Linkedin" ? (
+        <a
+          href={social?.url}
+          className="text-black/80 dark:text-green-100 dark:hover:text-blue-600 hover:text-blue-600"
+        >
+          <FaLinkedin size={24} />
+        </a>
+      ) :social?.name === "Discord" ? (
+        <a
+          href={social?.url}
+          className="text-black/80 dark:text-green-100 dark:hover:text-blue-600 hover:text-blue-600"
+        >
+          <FaDiscord size={24} />
+        </a>
+      ): social?.name === "Email" ? (
+        <a
+           href={`mailto:${social.url}`}
+          className="text-black/80 dark:text-green-100 dark:hover:text-blue-600 hover:text-blue-600"
+        >
+          <MdEmail size={24} />
+        </a>
+      ):social?.name === "Facebook" ? (
+        <a
+           href={social.url}
+          className="text-black/80 dark:text-green-100 dark:hover:text-blue-600 hover:text-blue-600"
+        >
+          <MdEmail size={24} />
+        </a>
+      ): social?.name === "Github" ? (
+        <a
+          href={social?.url}
+          className="text-black/80 dark:text-green-100 dark:hover:text-gray-200 hover:text-black"
+        >
+          <FaGithub size={24} />
+        </a>
+      ) : social?.name === "X" ? (
+        <a
+          href={social?.url}
+          className="text-black/80 dark:text-green-100 dark:hover:text-blue-600 hover:text-blue-600"
+        >
+          <BsTwitterX size={24} />
+        </a>
+      ) : null}
+    </div>
+  );
+})}</div>
           </div>
         </div>
       </div>
 
       {/* Quantity section */}
       <div className="mx-auto mt-4 pb-6 bg-green-300/40 dark:bg-black/80 py-10 rounded-xl shadow max-w-6xl px-2 lg:px-8 dark:darkBanner">
-
         <div className="flex flex-wrap bloc justify-around gap-y-8 text-center">
           <div>
             <div className="mx-auto flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-red-100">

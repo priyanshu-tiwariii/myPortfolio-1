@@ -1,9 +1,46 @@
-import React from "react";
-import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope } from "react-icons/fa";
+import React, {useState} from "react";
+import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope  } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { BsTwitterX } from "react-icons/bs";
 import { FaInstagram } from "react-icons/fa";
+import { FaDiscord } from "react-icons/fa";
+import { useEffect } from "react";
+import { FaFacebookF } from "react-icons/fa";
 export function Footer() {
+  const [error, setError] = useState(" ");
+  const [updateMessage, setUpdateMessage] = useState(" ");
+  const [socialData, setSocialData] = useState([]);
+  useEffect(() => {
+    const fetchSocialMedia = async () => {
+      try {
+        const res = await fetch(`/api/intro/getSocial`);
+        const data = await res.json();
+      
+        if (!res.ok) {
+          setError(data.message);
+          setTimeout(() => {
+            setError(" ");
+          }, 5000);
+          return;
+        }
+
+        setSocialData(data.data);
+
+        setUpdateMessage(data.message);
+        setError(" ");
+        setTimeout(() => {
+          setUpdateMessage(" ");
+        }, 5000);
+      } catch (error) {
+        setError("Unable to fetch social media");
+        setTimeout(() => {
+          setError(" ");
+        }, 5000);
+      }
+    };
+    fetchSocialMedia();
+  }, []);
   return (
     <footer className="bg-black/90 text-white dark:bg-neutral-950 py-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,21 +50,64 @@ export function Footer() {
             <p className="mt-2">Feel free to reach out for collaborations or just a friendly chat.</p>
           </div>
           <div className="flex space-x-6">
-            <a href="https://www.linkedin.com/in/iampriyanshu29" aria-label="LinkedIn" className="text-gray-400 hover:text-sky-800 hover:bg-white rounded transition-colors duration-300">
-              <FaLinkedin size={24} />
-            </a>
-            <a href="https://github.com/impriyanshu29" aria-label="GitHub" className="text-gray-400 hover:text-black hover:bg-white rounded-full -p-3 transition-colors duration-300">
-              <FaGithub size={24} />
-            </a>
-            <a href="https://x.com/iampriyanshu29" aria-label="Twitter" className="text-gray-400 hover:text-black transition-colors duration-300  ">
-              <BsTwitterX size={22} />
-            </a>
-            <a href="https://www.instagram.com/iampriyanshu29/?hl=en" aria-label="Twitter" className="text-gray-400  hover:text-red-600 transition-colors duration-300">
-              <FaInstagram size={22} />
-            </a>
-            <a href="mailto:youremail@example.com" aria-label="Email" className="text-gray-400 hover:text-white transition-colors duration-300">
-              <FaEnvelope size={24} />
-            </a>
+          {socialData?.map((social, index) => {
+  return (
+    //
+    
+    <div key={index} className="flex flex-col gap-4 mt-4">
+      {social?.name === "Instagram" ? (
+        <a
+          href={social?.url}
+          className="text-green-100 hover:text-pink-600 dark:hover:text-pink-600"
+        >
+          <FaInstagram size={24} />
+        </a>
+      ) : social?.name === "Linkedin" ? (
+        <a
+          href={social?.url}
+          className="text-green-100 dark:hover:text-blue-600 hover:text-blue-600"
+        >
+          <FaLinkedin size={24} />
+        </a>
+      ) :social?.name === "Discord" ? (
+        <a
+          href={social?.url}
+          className="text-green-100 dark:hover:text-blue-600 hover:text-blue-600"
+        >
+          <FaDiscord size={24} />
+        </a>
+      ): social?.name === "Email" ? (
+        <a
+           href={`mailto:${social.url}`}
+          className="text-green-100 dark:hover:text-blue-600 hover:text-blue-600"
+        >
+          <MdEmail size={24} />
+        </a>
+      ):social?.name === "Facebook" ? (
+        <a
+           href={social.url}
+          className="text-green-100 dark:hover:text-blue-600 hover:text-blue-600"
+        >
+          <FaFacebookF size={24} />
+        </a>
+      ): social?.name === "Github" ? (
+        <a
+          href={social?.url}
+          className="text-green-100 dark:hover:text-gray-200 hover:text-black"
+        >
+          <FaGithub size={24} />
+        </a>
+      ) : social?.name === "X" ? (
+        <a
+          href={social?.url}
+          className="text-green-100 dark:hover:text-blue-600 hover:text-black/60"
+        >
+          <BsTwitterX size={24} />
+        </a>
+      ) : null}
+    </div>
+  );
+})}
           </div>
         </div>
         <div className="mt-8 border-t border-gray-700 pt-4 flex flex-col md:flex-row justify-between items-center">

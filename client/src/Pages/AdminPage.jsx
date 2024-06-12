@@ -76,6 +76,22 @@ export function Admin() {
                   <span className="mx-2 text-sm font-medium">Introduction</span>
                 </NavLink>
                 <NavLink
+                  to="/admin2213008?tab=skills"
+                  className={getLinkClass("skills")}
+                >
+                  <span className="mx-2 text-sm font-medium">
+                    Skills & Tools
+                  </span>
+                </NavLink>
+                <NavLink
+                  to="/admin2213008?tab=social"
+                  className={getLinkClass("social")}
+                >
+                  <span className="mx-2 text-sm font-medium">
+                    Social Media
+                  </span>
+                </NavLink>
+                <NavLink
                   className={getLinkClass("journey")}
                   to="/admin2213008?tab=journey"
                 >

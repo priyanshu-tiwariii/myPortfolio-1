@@ -1,19 +1,29 @@
 import { Router } from "express";
-import { createIntro, addSkills,addSocials,updatedIntro,getIntro,getAllIntro,deleteIntro,deleteSocial,deleteSkill,getSkill,getSocial, uploadProfileImage, deleteProfileImage } from "../Controller/intro.controllers.js";
+import { createIntro, addSkills,addSocials,getIntro,deleteSocial,deleteSkill,getSkill,getSocial, uploadProfileImage, deleteProfileImage, uploadResumePdf, deleteResumePdf } from "../Controller/intro.controllers.js";
 import upload from "../Middleware/uploadFile.middleware.js";
-
+import { verifyJWT } from "../Middleware/verifyJWT.js";
 const router = Router();
-router.post('/createIntro', createIntro);
-router.post('/addSkills', addSkills);
-router.post('/addSocials', addSocials);
-router.post('/updatedIntro', updatedIntro);
-router.post('/getIntro', getIntro);
-router.get('/getAllIntro', getAllIntro);
-router.delete('/deleteIntro', deleteIntro);
-router.delete('/deleteSocial', deleteSocial);
-router.delete('/deleteSkill', deleteSkill);
+
+router.post('/createIntro',verifyJWT, createIntro);
+router.post('/addSkills',verifyJWT ,addSkills);
+router.post('/addSocials',verifyJWT, addSocials);
+
+router.get('/getIntro', getIntro);
+
 router.get('/getSkill', getSkill);
 router.get('/getSocial', getSocial);
-router.post("/uploadProfileImage",upload.single("file"), uploadProfileImage);
+
+
+router.delete('/deleteSocial',verifyJWT, deleteSocial);
+router.delete('/deleteSkill',verifyJWT, deleteSkill);
+
+
+router.post("/uploadProfileImage",upload.single("profileImage"), uploadProfileImage);
 router.delete("/deleteProfileImage", deleteProfileImage);
+
+router.post("/uploadResumePdf",upload.single("resumePdf"),uploadResumePdf );
+router.delete("/deleteResumePdf",deleteResumePdf)
+
+
+
 export default router;

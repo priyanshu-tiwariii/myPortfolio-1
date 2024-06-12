@@ -3,6 +3,9 @@ import { Admin } from '../AdminPage';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import HeroSection from './HeroSection';
+import Introduction from './Introduction';
+import SocialMedia from './SocialMedia';
+import Skill from './Skills';
 
 function Dashboard() {
     const { currentUser } = useSelector((state) => state.user);
@@ -26,7 +29,9 @@ function Dashboard() {
                     {tab === "hero-section" && <HeroSection />}
                     {tab === "about-section" && <div>About Section</div>}
                     {tab === "whyme-section" && <div>Why Me Section</div>}
-                    {tab === "intro" && <div>Introduction</div>}
+                    {tab === "intro" && <Introduction />}
+                    {tab === "skills" && <Skill />}
+                    {tab === "social" && <SocialMedia />}
                     {tab === "journey" && <div>Journey</div>}
                     {tab === "projects" && <div>Projects</div>}
                     {tab === "contact" && <div>Contact</div>}
