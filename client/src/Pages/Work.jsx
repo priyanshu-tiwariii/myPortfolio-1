@@ -129,7 +129,7 @@ export function Work() {
             <p className="text-base text-gray-600 dark:text-gray-400">
               {abbreviatedMonthNames[new Date(project?.from).getUTCMonth()] + " " + new Date(project?.from).getUTCFullYear()}{" - "}{abbreviatedMonthNames[new Date(project?.to).getUTCMonth()] + " " + new Date(project?.to).getUTCFullYear()}
             </p>
-            <Link to={`?slug=${project?.slug}`} className="mt-2 inline-flex items-center text-sm text-yellow-600 dark:text-yellow-400 hover:underline">
+            <Link to={`projectDetails/?slug=${project?.slug}`} className="mt-2 inline-flex items-center text-sm text-yellow-600 dark:text-yellow-400 hover:underline">
               <button className="mt-1 bg-transparent border border-gray-300 dark:border-gray-700 hover:bg-yellow-600 hover:text-white font-bold py-2 px-4 rounded-3xl transition duration-300 ease-in-out">
                 <div className="flex gap-3 items-center">View Project <BsBoxArrowUpRight /></div>
               </button>
