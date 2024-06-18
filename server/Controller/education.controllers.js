@@ -1,7 +1,7 @@
 import apiError from "../Helper/apiError.js";
 import apiResponse from "../Helper/apiResponse.js";
 import asyncHandler from "../Helper/asyncHandler.js";
-import Education from "../Models/Education.models.js";
+import Education from "../Models/education.models.js";
 import { uploadFileOnCloudinary, deleteFileFromCloudinary } from "../Helper/cloudinary.js";
 
 // Create Education
