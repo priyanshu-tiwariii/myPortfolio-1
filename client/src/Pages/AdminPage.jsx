@@ -92,10 +92,16 @@ export function Admin() {
                   </span>
                 </NavLink>
                 <NavLink
-                  className={getLinkClass("journey")}
-                  to="/admin2213008?tab=journey"
+                  className={getLinkClass("experience")}
+                  to="/admin2213008?tab=experience"
                 >
-                  <span className="mx-2 text-sm font-medium">Journey</span>
+                  <span className="mx-2 text-sm font-medium">Experience</span>
+                </NavLink>
+                <NavLink
+                  className={getLinkClass("education")}
+                  to="/admin2213008?tab=education"
+                >
+                  <span className="mx-2 text-sm font-medium">Education</span>
                 </NavLink>
                 <NavLink
                   className={getLinkClass("projects")}

@@ -3,12 +3,15 @@ import {Schema} from "mongoose"
 
 
 const journeySchema = new Schema({
-    institute:{
+    role:{
+        type:String,
+        required:true
+    },
+    companyName:{
         type:String,
         required:true,
     },
-
-    degree:{
+    employmentType:{
         type:String,
         required:true,
     },
@@ -16,24 +19,20 @@ const journeySchema = new Schema({
         type:String,
         required:true,
     },
-    fieldofstudy:{
-        type:String,
-       
+    startDate:{
+        type:Date
     },
-    from:{
-        type:Date,
-        required:true,
+    endDate:{
+        type:Date
     },
-    to:{
-        type:Date,
-    },
-    activities:{
+    experience:{
         type:String,
     },
     description:{
         type:String,
-    }
+    },
+},{timestamps:true
 })
 
-const Journey = mongoose.model("Journey",journeySchema)
-export default Journey;
+const Experience = mongoose.model("Experience",journeySchema)
+export default Experience;

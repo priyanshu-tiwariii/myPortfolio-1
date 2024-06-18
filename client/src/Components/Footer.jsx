@@ -58,49 +58,49 @@ export function Footer() {
       {social?.name === "Instagram" ? (
         <a
           href={social?.url}
-          className="text-green-100 hover:text-pink-600 dark:hover:text-pink-600"
+          className="text-green-50 hover:text-pink-600 dark:hover:text-pink-600"
         >
           <FaInstagram size={24} />
         </a>
       ) : social?.name === "Linkedin" ? (
         <a
           href={social?.url}
-          className="text-green-100 dark:hover:text-blue-600 hover:text-blue-600"
+          className="text-green-50 dark:hover:text-blue-600 hover:text-blue-600"
         >
           <FaLinkedin size={24} />
         </a>
       ) :social?.name === "Discord" ? (
         <a
           href={social?.url}
-          className="text-green-100 dark:hover:text-blue-600 hover:text-blue-600"
+          className="text-green-50 dark:hover:text-blue-600 hover:text-blue-600"
         >
           <FaDiscord size={24} />
         </a>
       ): social?.name === "Email" ? (
         <a
            href={`mailto:${social.url}`}
-          className="text-green-100 dark:hover:text-blue-600 hover:text-blue-600"
+          className="text-green-50 dark:hover:text-blue-600 hover:text-blue-600"
         >
           <MdEmail size={24} />
         </a>
       ):social?.name === "Facebook" ? (
         <a
            href={social.url}
-          className="text-green-100 dark:hover:text-blue-600 hover:text-blue-600"
+          className="text-green-50 dark:hover:text-blue-600 hover:text-blue-600"
         >
           <FaFacebookF size={24} />
         </a>
       ): social?.name === "Github" ? (
         <a
           href={social?.url}
-          className="text-green-100 dark:hover:text-gray-200 hover:text-black"
+          className="text-green-50 dark:hover:text-gray-200 hover:text-black"
         >
           <FaGithub size={24} />
         </a>
       ) : social?.name === "X" ? (
         <a
           href={social?.url}
-          className="text-green-100 dark:hover:text-blue-600 hover:text-black/60"
+          className="text-green-50  "
         >
           <BsTwitterX size={24} />
         </a>

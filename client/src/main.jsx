@@ -17,6 +17,7 @@ import Contact from "./Pages/Contact.jsx";
 import { Admin } from "./Pages/AdminPage.jsx";
 import Dashboard from "./Pages/Dashboard/Dashboard.jsx";
 import SignIn from "./Pages/Sigin.jsx";
+import ProjectDetails from "./Pages/ProjectDetails.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/admin2213008/signIn",
         element: <SignIn />,
+      },
+      {
+        path: "/works/projectDetails",
+        element:<ProjectDetails/>
       },
       {
         path: "/admin2213008",

@@ -2,19 +2,11 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 function Introduction() {
   const navigate = useNavigate();
-  const [infoData, setInfoData] = useState({
-    name: "",
-    email: "",
-    headlines: "",
-    about: "",
-    location: "",
-    city: "",
-    hobies: "",
-    interests: "",
-    languages: "",
-  });
+  const [infoData, setInfoData] = useState({});
 
   const [imageFile, setImageFile] = useState(null);
   const [resumeFile, setResumeFile] = useState(null);
@@ -23,7 +15,7 @@ function Introduction() {
   const [loading, setLoading] = useState(false);
   const [updateMessage, setUpdateMessage] = useState("");
   const [pdfLoading, setPdfLoading] = useState(false);
-
+  const [changeAbout , setChangeAbout] = useState(" ")
   const handleChanges = (e) => {
     setInfoData({
       ...infoData,
@@ -41,14 +33,19 @@ function Introduction() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(infoData),
+        body: JSON.stringify({
+
+          about: changeAbout,
+          infoData
+        }
+          
+        
+        ),
       });
       const data = await res.json();
       if (!res.ok) {
-        
         setLoading(false);
         setUpdateMessage("");
-        
         return;
       }
 
@@ -82,7 +79,9 @@ function Introduction() {
           }, 5000);
           return;
         }
+      
         setInfoData(data.data);
+        setChangeAbout(data.data.about)
       } catch (error) {
         console.log(error);
         setError("Something went wrong!!");
@@ -94,7 +93,7 @@ function Introduction() {
     fetchInfo();
   }, []);
 
-  console.log(infoData);
+  console.log(infoData); // Debug state
 
   const handleImageChange = (e) => {
     setImageFile(e.target.files[0]);
@@ -137,6 +136,7 @@ function Introduction() {
       }, 5000);
     }
   };
+
   const handleDelete = async (id) => {
     try {
       const res = await fetch(`/api/intro/deleteProfileImage?publicId=${id}`, {
@@ -195,9 +195,9 @@ function Introduction() {
       setInfoData(data.data);
       setPdfLoading(false);
       setUpdateMessage("PDF uploaded successfully");
-      setTimeout(()=>{
-        setUpdateMessage(" ")
-      },5000)
+      setTimeout(() => {
+        setUpdateMessage(" ");
+      }, 5000);
     } catch (error) {
       setLoading(false);
       setError("Unable to upload PDF");
@@ -233,6 +233,9 @@ function Introduction() {
       }, 5000);
     }
   };
+
+  console.log("InfoData", infoData);
+  console.log("Image", infoData?.image);
   return (
     <div className="overflow-hidden p-3 dark:glass-container md:w-2/4 md:px-14 min-h-screen mx-auto bg-gradient-to-r from-gray-50 via-gray-50 to-green-100/40 dark:bg-gradient-to-r dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-900">
       <div className="mb-4 flex items-center justify-center rounded-lg py-2">
@@ -258,7 +261,6 @@ function Introduction() {
               <input
                 className="flex h-10 w-full rounded-md border border-black/30 bg-transparent text-gray-400 px-3 py-2 text-sm dark:border-gray-600 dark:placeholder:text-gray-700 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                 type="text"
-                placeholder="Enter your name"
                 id="name"
                 value={infoData.name}
                 onChange={handleChanges}
@@ -329,14 +331,15 @@ function Introduction() {
                 >
                   About<span className="text-red-700">*</span>
                 </label>
-                <input
-                  className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm dark:border-gray-600 dark:placeholder:text-gray-700 text-gray-400 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                  type="text"
-                  placeholder="Write something about you.."
+
+                <ReactQuill
+                  theme="snow"
+                  className=" h-72 mb-12"
                   id="about"
-                  value={infoData.about}
-                  onChange={handleChanges}
-                ></input>
+                  placeholder="Enter Description"
+                  value={changeAbout}
+                  onChange={(value) => setChangeAbout(value )}
+                />
               </div>
             </div>
           </div>
@@ -484,22 +487,19 @@ function Introduction() {
       </form>
       <div className="flex flex-wrap justify-center  gap-4">
         {infoData?.image?.map((image, index) => (
-          <div
-            key={index}
-            className="w-full sm:w-1/2 md:w-1/3 lg:w-2/5 "
-          >
+          <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-2/5 ">
             <img
               src={image?.url}
               alt={`Image ${index + 1}`}
               className="w-full h-auto rounded-md border border-gray-300"
             />
             <div className="flex justify-center">
-            <button
-              onClick={() => handleDelete(image?.public_id)}
-              className=" bg-red-500 mt-5 justify-center text-white rounded-md p-2 px-5 hover:bg-red-600"
-            >
-              Delete
-            </button>
+              <button
+                onClick={() => handleDelete(image?.public_id)}
+                className=" bg-red-500 mt-5 justify-center text-white rounded-md p-2 px-5 hover:bg-red-600"
+              >
+                Delete
+              </button>
             </div>
           </div>
         ))}
@@ -549,10 +549,7 @@ function Introduction() {
 
             <div className="flex flex-row justify-center gap-6 ">
               <Link to={image?.url} target="_blank" rel="noopener noreferrer">
-                <button
-                  
-                  className=" dark:bg-green-100 dark:text-black text-white bg-black/80 rounded-md p-2 px-6 hover:bg-green-600"
-                >
+                <button className=" dark:bg-green-100 dark:text-black text-white bg-black/80 rounded-md p-2 px-6 hover:bg-green-600">
                   Show
                 </button>
               </Link>

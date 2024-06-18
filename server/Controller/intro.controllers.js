@@ -33,13 +33,16 @@ export const createIntro = asyncHandler(async (req, res) => {
         req.body,
         { new: true }
       );
+      const updateIntroduction  = await Intro.findOne({unique_id}).select(
+        "-unique_id"
+      );
 
-      if (!updatedIntro) {
+      if (!updateIntroduction) {
         throw new apiError(400, "Intro update failed");
       }
       return res
         .status(200)
-        .json(new apiResponse(200, updatedIntro, "Intro updated successfully"));
+        .json(new apiResponse(200, updateIntroduction, "Intro updated successfully"));
     }
 
     const newIntro = await Intro.create({
@@ -58,10 +61,12 @@ export const createIntro = asyncHandler(async (req, res) => {
     if (!newIntro) {
       throw new apiError(400, "Intro creation failed");
     }
-
+    const Introduction  = await Intro.findOne({unique_id}).select(
+      "-unique_id"
+    ); 
     return res
       .status(201)
-      .json(new apiResponse(201, newIntro, "Intro created successfully"));
+      .json(new apiResponse(201, Introduction, "Intro created successfully"));
   } catch (error) {
     throw new apiError(400, "Intro creation failed");
   }

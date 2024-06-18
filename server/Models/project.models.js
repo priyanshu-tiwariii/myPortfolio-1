@@ -1,47 +1,52 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const projectSchema = new Schema({
-  projectName: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  skills: {
-    type: [String],
-    required: true,
-  },
-  media: [
-    {
-      image: {
-        type: String,
-        required: true,
-      },
-      title: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
-  projectUrl: {
-    type: String,
-    required: true,
-  },
-  from :{
-    type:Date,
-    required:true,
-  },
-    to :{
-        type:Date,
-    },
-    githubUrl :{
-        type:String,
-    },
+const projectSchema = new Schema(
+  {
+    projectName: {
+      type: String,
     
-}, { timestamps: true}
+    },
+    description: {
+      type: String,
+     
+    },
+    skills: {
+      type: String,
+      
+    },
+    images: [
+      {
+        url: {
+          type: String,
+        },
+        public_id: {
+          type: String,
+        },
+      },
+    ],
+
+    projectUrl: {
+      type: String,
+
+    },
+    from: {
+      type: Date, 
+    },
+    to: {
+      type: Date,
+    },
+    githubUrl: {
+      type: String,
+    },
+    linkedinUrl: {
+      type: String,
+    },slug:{
+      type:String,
+      unique:true
+    }
+  },
+  { timestamps: true }
 );
 
 const Project = mongoose.model("Project", projectSchema);

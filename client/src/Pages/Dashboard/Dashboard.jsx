@@ -6,6 +6,19 @@ import HeroSection from './HeroSection';
 import Introduction from './Introduction';
 import SocialMedia from './SocialMedia';
 import Skill from './Skills';
+import { Projects } from './Projects/Projects';
+import CreateProjects from './Projects/CreateProjects';
+import UpdateProject from './Projects/UpdateProject';
+import CreateExperience from './Experience/CreateExperience';
+import CreateEducation from './Education/CreateEducation';
+import CreateCertificate from './Certificate/CreateCertificate';
+import { EducationList } from './Education/EducationList';
+import UpdateEducation from './Education/UpdateEducation';
+import { ExperienceList } from './Experience/ExperienceList';
+import UpdateExperience from './Experience/UpdateExperience';
+import { CertificateList } from './Certificate/CertificateList';
+import UpdateCertificate from './Certificate/UpdateCertificate';
+
 
 function Dashboard() {
     const { currentUser } = useSelector((state) => state.user);
@@ -32,9 +45,20 @@ function Dashboard() {
                     {tab === "intro" && <Introduction />}
                     {tab === "skills" && <Skill />}
                     {tab === "social" && <SocialMedia />}
-                    {tab === "journey" && <div>Journey</div>}
-                    {tab === "projects" && <div>Projects</div>}
-                    {tab === "contact" && <div>Contact</div>}
+                    {tab === "experience" && <ExperienceList/>}
+                    {tab === "education" && <EducationList />}
+                    {tab === "projects" && <Projects />}
+                    {tab === "createProjects" && <CreateProjects/>}
+                    {tab === "createExperience" && <CreateExperience />}
+                    {tab === "createEducation" && <CreateEducation />}
+                    {tab === 'createCertificate' && <CreateCertificate />}
+                    {tab==="updateProjects" && <UpdateProject />}
+                    {tab === "updateExperience" && <UpdateExperience />}
+                    {tab === "updateEducation" && <UpdateEducation />}
+                    {
+                        tab === "certificate" && <CertificateList />
+                    }
+                    {tab === "updateCertificate" && <UpdateCertificate />}
                 </>
             )}
         </div>

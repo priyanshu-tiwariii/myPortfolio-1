@@ -44,7 +44,7 @@ export function Header() {
         <div className="inline-flex items-center space-x-2">
         <span className="font-bold font-serif text-2xl">
         {currentUser && currentUser?.data?.loggedInUser?.isAdmin
-                ? <Link to="/admin2213008">
+                ? <Link to="/admin2213008"  className={`whitespace-nowrap self-center font-logo_font text-black/80 dark:text-green-50 text-sm sm:text-xl font-semibold`}>
                     PT
                   </Link>
                 

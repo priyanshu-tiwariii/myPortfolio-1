@@ -183,8 +183,8 @@ function Skill() {
             placeholder="Select Category"
           >
             <option>Select Category </option>
-            <option value="Front End">Frontend</option>
-            <option value="Back End">BackEnd</option>
+            <option value="Frontend">Frontend</option>
+            <option value="Backend">Backend</option>
             <option value="Devops">Devops</option>
             <option value="Other">Other</option>
           </select>
