@@ -6,6 +6,7 @@ import {
   uploadFileOnCloudinary,
   deleteFileFromCloudinary,
 } from "../Helper/cloudinary.js";
+import Project from "../Models/project.models.js";
 
 export const createIntro = asyncHandler(async (req, res) => {
   try {
@@ -501,3 +502,41 @@ export const deleteResumePdf = asyncHandler(async (req, res) => {
   }
 });
 
+export const  getResumePdf = asyncHandler(async (req, res) => {
+  try {
+    const unique_id = process.env.UNIQUE_ID;
+    const existedIntro = await Intro.findOne({ unique_id });
+    if (!existedIntro) {
+      throw new apiError(400, "Intro not found");
+    }
+    return res
+      .status(200)
+      .json(
+        new apiResponse(200, existedIntro.resumePdf, "PDF found successfully")
+      );
+  } catch (error) {
+    throw new apiError(400, "PDF not found");
+  }
+}
+);
+
+
+export const totalThings = asyncHandler(async (req, res) => {
+  try {
+    const unique_id = process.env.UNIQUE_ID;
+    const existedIntro = await Intro.findOne({ unique_id });
+    if (!existedIntro) {
+      throw new apiError(400, "Intro not found");
+    }
+    const totalSkills = existedIntro.skills.length;
+    const totalProjects = await  Project.countDocuments();
+
+    return res
+      .status(200)
+      .json(
+        new apiResponse(200, {totalSkills,totalProjects}, "Total things found successfully")
+      );
+    
+  } catch (error) {
+    throw new apiError(400, "Intro not found");
+  }});

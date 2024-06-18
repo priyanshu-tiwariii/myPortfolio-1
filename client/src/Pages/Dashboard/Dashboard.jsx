@@ -18,6 +18,7 @@ import { ExperienceList } from './Experience/ExperienceList';
 import UpdateExperience from './Experience/UpdateExperience';
 import { CertificateList } from './Certificate/CertificateList';
 import UpdateCertificate from './Certificate/UpdateCertificate';
+import Messages from './Messages';
 
 
 function Dashboard() {
@@ -59,6 +60,9 @@ function Dashboard() {
                         tab === "certificate" && <CertificateList />
                     }
                     {tab === "updateCertificate" && <UpdateCertificate />}
+                    {
+                        tab === "messages" && <Messages />
+                    }
                 </>
             )}
         </div>

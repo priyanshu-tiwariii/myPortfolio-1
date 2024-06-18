@@ -57,11 +57,11 @@ export function Admin() {
                   </span>
                 </NavLink>
                 <NavLink
-                  className={getLinkClass("whyme-section")}
-                  to="/admin2213008?tab=whyme-section"
+                  className={getLinkClass("messages")}
+                  to="/admin2213008?tab=messages"
                 >
                   <span className="mx-2 text-sm font-medium">
-                    Why ME Section
+                    Messages
                   </span>
                 </NavLink>
               </div>

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createIntro, addSkills,addSocials,getIntro,deleteSocial,deleteSkill,getSkill,getSocial, uploadProfileImage, deleteProfileImage, uploadResumePdf, deleteResumePdf } from "../Controller/intro.controllers.js";
+import { createIntro, addSkills,addSocials,getIntro,deleteSocial,deleteSkill,getSkill,getSocial, uploadProfileImage, deleteProfileImage, uploadResumePdf, deleteResumePdf, getResumePdf, totalThings } from "../Controller/intro.controllers.js";
 import upload from "../Middleware/uploadFile.middleware.js";
 import { verifyJWT } from "../Middleware/verifyJWT.js";
 const router = Router();
@@ -23,7 +23,7 @@ router.delete("/deleteProfileImage", deleteProfileImage);
 
 router.post("/uploadResumePdf",upload.single("resumePdf"),uploadResumePdf );
 router.delete("/deleteResumePdf",deleteResumePdf)
-
-
+router.get("/resumePdf", getResumePdf)
+router.get("/getTotal", totalThings)
 
 export default router;

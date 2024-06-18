@@ -9,6 +9,7 @@ import educationRoute from './Routes/education.routes.js'
 import projectRoute from './Routes/project.routes.js';
 import certificateRoute from './Routes/certificate.routes.js';
 import experienceRoute from './Routes/experience.routes.js';
+import messageRoute from './Routes/message.routes.js';
 const app = express();
 
 app.use(express.json());
@@ -27,6 +28,7 @@ app.use("/api/edu",educationRoute);
 app.use("/api/project",projectRoute);
 app.use("/api/certificate",certificateRoute);
 app.use("/api/experience",experienceRoute);
+app.use("/api/message",messageRoute);
 app.use((err,req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
