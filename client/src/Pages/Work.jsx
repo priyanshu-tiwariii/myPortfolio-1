@@ -145,7 +145,7 @@ export function Work() {
                   key={index}
                   src={image.url}
                   alt={project.projectName}
-                  className="w-24 h-24 rounded-md object-cover"
+                  className="w-20 h-20 rounded-md object-cover"
                 />
                 </Link>
 

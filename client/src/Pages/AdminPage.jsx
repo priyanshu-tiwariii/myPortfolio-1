@@ -92,6 +92,12 @@ export function Admin() {
                   </span>
                 </NavLink>
                 <NavLink
+                  className={getLinkClass("certificate")}
+                  to="/admin2213008?tab=certificate"
+                >
+                  <span className="mx-2 text-sm font-medium">Certificate</span>
+                </NavLink>
+                <NavLink
                   className={getLinkClass("experience")}
                   to="/admin2213008?tab=experience"
                 >
