@@ -1,7 +1,7 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-
+import path from 'path';
 
 import authRoute from './Routes/auth.routes.js';
 import introRoute from './Routes/intro.routes.js';
@@ -29,6 +29,16 @@ app.use("/api/project",projectRoute);
 app.use("/api/certificate",certificateRoute);
 app.use("/api/experience",experienceRoute);
 app.use("/api/message",messageRoute);
+
+// Serve static files from the React app
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+// The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client','dist', 'index.html')); // Adjust the path
+});
+
 app.use((err,req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
