@@ -269,7 +269,7 @@ function Home() {
 
 
   return (
-    <div className="w-full">
+    <div className="w-full overflow-hidden ">
       {/* Hero Section */}
       <div className="relative w-full bg-gradient-to-r from-green-50 via-gray-50 to-green-100 dark:bg-gradient-to-r dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-900 dark:text-neutral-900">
         <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-5 px-4 lg:px-8">
