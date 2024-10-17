@@ -12,6 +12,7 @@ export default defineConfig({
   },
   plugins: [react()],
   build: {
+    outDir: 'dist',
     rollupOptions: {
       output: {
         assetFileNames: 'assets/[name][extname]',   // No hash for asset files
@@ -20,5 +21,5 @@ export default defineConfig({
       },
     },
   },
-  base: '',  // This ensures relative paths
+  base: './',  // This ensures relative paths
 });
