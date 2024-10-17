@@ -1,9 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
 
-// https://vitejs.dev/config/
-
-// https://vitejs.dev/config/
 export default defineConfig({
   server: {
     proxy: {
@@ -15,15 +12,13 @@ export default defineConfig({
   },
   plugins: [react()],
   build: {
-    // Ensure relative paths for assets
     rollupOptions: {
       output: {
-        assetFileNames: 'assets/[name].[hash][extname]',
-        chunkFileNames: 'assets/[name].[hash].js',
-        entryFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name][extname]',   // No hash for asset files
+        chunkFileNames: 'assets/[name].js',         // No hash for chunk files
+        entryFileNames: 'assets/[name].js',         // No hash for entry files
       },
     },
   },
-  // Adding the base option to ensure relative paths
-  base: '', // This makes asset paths relative
+  base: '',  // This ensures relative paths
 });
