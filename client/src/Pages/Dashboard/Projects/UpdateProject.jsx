@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Datepicker } from "flowbite-react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { set } from "mongoose";
+
 
 function UpdateProject() {
   const location = useLocation();
