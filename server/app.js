@@ -12,26 +12,23 @@ app.use(cors());
 app.use(cookieParser());
 
 // Import routes
-import authRoute from './routes/auth.routes.js';
-import addressRoute from './routes/address.routes.js';
-import menuRoute from './routes/menu.routes.js';
-import whistListRouter from './routes/whistList.routes.js';
-import cartRoute from './routes/cart.routes.js';
-import paymentRoute from './routes/payment.routes.js';
-import orderRoute from './routes/order.routes.js';
-import tableRoute from './routes/table.routes.js';
-import contactRoute from './routes/contact.routes.js';
+import authRoute from './Routes/auth.routes.js';
+import introRoute from './Routes/intro.routes.js';
+import educationRoute from './Routes/education.routes.js'
+import projectRoute from './Routes/project.routes.js';
+import certificateRoute from './Routes/certificate.routes.js';
+import experienceRoute from './Routes/experience.routes.js';
+import messageRoute from './Routes/message.routes.js';
+const app = express();
 
 // Use routes
-app.use('/api/auth', authRoute);
-app.use('/api/add', addressRoute);
-app.use('/api/menu', menuRoute);
-app.use('/api/whistList', whistListRouter);
-app.use('/api/cart', cartRoute);
-app.use('/api/payment', paymentRoute);
-app.use('/api/order', orderRoute);
-app.use('/api/table', tableRoute);
-app.use('/api/contact', contactRoute);
+app.use('/api/auth',authRoute);
+app.use('/api/intro',introRoute);
+app.use("/api/edu",educationRoute);
+app.use("/api/project",projectRoute);
+app.use("/api/certificate",certificateRoute);
+app.use("/api/experience",experienceRoute);
+app.use("/api/message",messageRoute);
 
 // Handle __dirname in ES module
 const __filename = fileURLToPath(import.meta.url);
