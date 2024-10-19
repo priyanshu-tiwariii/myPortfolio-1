@@ -3,7 +3,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
-
+const app = express();
 
 
 // Middleware
@@ -19,7 +19,7 @@ import projectRoute from './Routes/project.routes.js';
 import certificateRoute from './Routes/certificate.routes.js';
 import experienceRoute from './Routes/experience.routes.js';
 import messageRoute from './Routes/message.routes.js';
-const app = express();
+
 
 // Use routes
 app.use('/api/auth',authRoute);
