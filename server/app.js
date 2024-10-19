@@ -4,7 +4,7 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-const app = express();
+
 
 // Middleware
 app.use(express.json());
